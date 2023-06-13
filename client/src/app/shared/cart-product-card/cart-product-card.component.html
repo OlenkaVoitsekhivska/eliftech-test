@@ -1,0 +1,13 @@
+<mat-card class="card">
+  <ng-content select=".card__img"></ng-content>
+  <div class="card__content">
+    <mat-card-content>
+      <ng-content select=".card__text"></ng-content>
+      <ng-content select=".card__price"></ng-content>
+    </mat-card-content>
+    <ng-content select=".card__qnt"></ng-content>
+    <mat-card-actions align="end">
+      <ng-content select=".card__btn"></ng-content>
+    </mat-card-actions>
+  </div>
+</mat-card>

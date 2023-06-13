@@ -1,0 +1,57 @@
+<!-- <div class="shops">
+  <ng-container *ngIf="shops$ | async as shops">
+    <app-sidebar class="shops__sidebar" [places]="shops"></app-sidebar>
+    <div *ngIf="getMenuItems(shops) as dataS" class="card scrollable">
+      <div *ngFor="let prod of dataS" class="card__wrapper">
+        <app-card>
+          <img src="./../../assets/prod-img.png" alt="" class="card__img" />
+          <h3 class="card__text">{{ prod.title }}</h3>
+          <app-button
+            label="add to cart"
+            class="card__btn"
+            (customClick)="handleClick($event, prod)"
+          ></app-button>
+        </app-card>
+      </div></div
+  ></ng-container>
+</div> -->
+
+<div class="shops">
+  <ng-container *ngIf="shops$ | async as shops">
+    <ng-container *ngIf="!shopId; else singleShopMenu">
+      <app-sidebar class="shops__sidebar" [places]="shops"></app-sidebar>
+      <div *ngIf="getMenuItems(shops) as dataS" class="card scrollable">
+        <div *ngFor="let prod of dataS" class="card__wrapper">
+          <app-card>
+            <img src="./../../assets/prod-img.png" alt="" class="card__img" />
+            <h3 class="card__text">{{ prod.title }}</h3>
+            <app-button
+              label="add to cart"
+              class="card__btn"
+              (customClick)="handleClick($event, prod)"
+            ></app-button>
+          </app-card>
+        </div>
+      </div>
+    </ng-container>
+
+    /**/
+    <ng-template #singleShopMenu>
+      <app-sidebar class="shops__sidebar" [places]="shops"></app-sidebar>
+      <div *ngIf="singleMenu$ | async as dataS" class="card scrollable">
+        <div *ngFor="let prod of dataS.menu" class="card__wrapper">
+          <app-card>
+            <img src="./../../assets/prod-img.png" alt="" class="card__img" />
+            <h3 class="card__text">{{ prod.title }}</h3>
+            <app-button
+              label="add to cart"
+              class="card__btn"
+              (customClick)="handleClick($event, prod)"
+            ></app-button>
+          </app-card>
+        </div>
+      </div>
+    </ng-template>
+    /**/ ></ng-container
+  >
+</div>

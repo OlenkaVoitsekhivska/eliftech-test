@@ -1,0 +1,21 @@
+.shops{
+    display: flex;
+    &__sidebar{
+        flex-basis: 25%;
+    }
+
+}
+
+.card{
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+    justify-content: space-around;
+    align-items: center;
+    &__wrapper{
+        flex-basis: 40%;
+    }
+}
+
+

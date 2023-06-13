@@ -1,0 +1,21 @@
+<ng-container *ngIf="cartData$ | async as cartData">
+  <div *ngFor="let prod of cartData" class="wrapper">
+    <app-cart-product-card class="card">
+      <img src="./../../../../assets/prod-img.png" alt="" class="card__img" />
+      <h3 class="card__text">{{ prod.title }}</h3>
+      <p class="card__price">{{ prod.price }}</p>
+      <input
+        type="number"
+        value="{{ prod.qnt }}"
+        class="card__qnt"
+        (input)="handleInput(prod, input.value)"
+        #input
+      />
+      <app-button
+        label="delete"
+        class="card__btn"
+        (customClick)="handleClick($event, prod)"
+      ></app-button>
+    </app-cart-product-card>
+  </div>
+</ng-container>

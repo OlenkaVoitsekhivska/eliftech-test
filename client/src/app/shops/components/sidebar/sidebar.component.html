@@ -1,0 +1,12 @@
+<ng-container *ngIf="places.length">
+  <div *ngFor="let place of places" class="shop">
+    <app-card type="shop">
+      <a
+        routerLink="/shops/{{ place._id }}"
+        class="card__text"
+        routerLinkActive="active"
+        >{{ place.name }}</a
+      >
+    </app-card>
+  </div>
+</ng-container>

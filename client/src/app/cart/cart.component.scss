@@ -1,0 +1,18 @@
+.cart{
+    display: flex;
+    gap:50px;
+    margin-bottom:50px;
+ &__form{
+    flex-basis: 50%;
+ }
+ &__content{
+    flex-basis: 50%;
+ }
+}
+.total-sbmt-group{
+   text-align: end;
+}
+.scrollable{
+   max-height: 70vh;
+   overflow-y: auto;
+}

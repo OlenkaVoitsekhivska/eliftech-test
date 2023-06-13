@@ -1,0 +1,13 @@
+<mat-form-field class="input">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [errorStateMatcher]="errorStateMatcher"
+    placeholder="{{ placeholder }}"
+    required
+    type="{{ type }}"
+    [(ngModel)]="value"
+    #input
+  />
+  <mat-error *ngIf="errorStateMatcher">{{ errorMessage }}</mat-error>
+</mat-form-field>

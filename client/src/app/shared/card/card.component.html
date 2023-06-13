@@ -1,0 +1,11 @@
+<mat-card class="card">
+  <div class="card__content">
+    <ng-content select=".card__img"></ng-content>
+    <mat-card-content>
+      <ng-content select=".card__text"></ng-content>
+    </mat-card-content>
+  </div>
+  <mat-card-actions *ngIf="type === 'product'" align="end">
+    <ng-content select=".card__btn"></ng-content>
+  </mat-card-actions>
+</mat-card>

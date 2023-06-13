@@ -1,0 +1,249 @@
+[
+  {
+    "name": "Burger joint",
+    "menu": [
+      {
+        "title": "Classic Burger",
+        "price": "9.99"
+      },
+      {
+        "title": "Cheeseburger",
+        "price": "10.99"
+      },
+      {
+        "title": "Bacon Burger",
+        "price": "11.99"
+      },
+      {
+        "title": "Mushroom Swiss Burger",
+        "price": "12.99"
+      },
+      {
+        "title": "BBQ Burger",
+        "price": "11.99"
+      },
+      {
+        "title": "Veggie Burger",
+        "price": "9.99"
+      },
+      {
+        "title": "Chicken Burger",
+        "price": "10.99"
+      },
+      {
+        "title": "Fish Burger",
+        "price": "11.99"
+      },
+      {
+        "title": "Double Cheeseburger",
+        "price": "13.99"
+      },
+      {
+        "title": "Spicy Jalapeno Burger",
+        "price": "12.99"
+      }
+    ]
+  },
+  {
+    "name": "Elliniko estiatorio",
+    "menu": [
+      {
+        "title": "Gyro",
+        "price": "9.99"
+      },
+      {
+        "title": "Spanakopita",
+        "price": "8.99"
+      },
+      {
+        "title": "Moussaka",
+        "price": "11.99"
+      },
+      {
+        "title": "Souvlaki",
+        "price": "12.99"
+      },
+      {
+        "title": "Dolmades",
+        "price": "7.99"
+      },
+      {
+        "title": "Tzatziki",
+        "price": "5.99"
+      },
+      {
+        "title": "Saganaki",
+        "price": "10.99"
+      },
+      {
+        "title": "Greek Salad",
+        "price": "9.99"
+      },
+      {
+        "title": "Baklava",
+        "price": "6.99"
+      },
+      {
+        "title": "Loukoumades",
+        "price": "7.99"
+      }
+    ]
+  },
+  {
+    "name": "Mexican bird",
+    "menu": [
+      {
+        "title": "Tacos al Pastor",
+        "price": "9.99"
+      },
+      {
+        "title": "Enchiladas Verdes",
+        "price": "10.99"
+      },
+      {
+        "title": "Chiles Rellenos",
+        "price": "11.99"
+      },
+      {
+        "title": "Carne Asada",
+        "price": "12.99"
+      },
+      {
+        "title": "Tamales",
+        "price": "8.99"
+      },
+      {
+        "title": "Guacamole",
+        "price": "6.99"
+      },
+      {
+        "title": "Pozole",
+        "price": "9.99"
+      },
+      {
+        "title": "Ceviche",
+        "price": "10.99"
+      },
+      {
+        "title": "Flan",
+        "price": "5.99"
+      },
+      {
+        "title": "Churros",
+        "price": "4.99"
+      }
+    ]
+  },
+{
+  "name":"Pizza Place",
+
+  "menu": [
+    {
+
+      "title": "Margherita Pizza",
+      "price": "9.99"
+    },
+    {
+  
+      "title": "Pepperoni Pizza",
+      "price": "10.99"
+    },
+    {
+  
+      "title": "Vegetarian Pizza",
+      "price": "11.99"
+    },
+    {
+ 
+      "title": "Hawaiian Pizza",
+      "price": "12.99"
+    },
+    {
+   
+      "title": "BBQ Chicken Pizza",
+      "price": "11.99"
+    },
+    {
+    
+      "title": "Supreme Pizza",
+      "price": "13.99"
+    },
+    {
+   
+      "title": "Mushroom Pizza",
+      "price": "10.99"
+    },
+    {
+    
+      "title": "Meat Lovers Pizza",
+      "price": "12.99"
+    },
+    {
+      
+      "title": "Spinach and Feta Pizza",
+      "price": "11.99"
+    },
+    {
+  
+      "title": "Buffalo Chicken Pizza",
+      "price": "12.99"
+    }
+  ]
+  
+},
+{
+  "name":"Sushi Spot",
+  "menu":[
+    {
+
+      "title": "California Roll",
+      "price": "6.99"
+    },
+    {
+  
+      "title": "Spicy Tuna Roll",
+      "price": "7.99"
+    },
+    {
+      "title": "Salmon Nigiri",
+      "price": "4.99"
+    },
+    {
+
+      "title": "Tuna Sashimi",
+    "price": "8.99"
+    },
+    {
+ 
+      "title": "Rainbow Roll",
+      "price": "10.99"
+    },
+    {
+     
+      "title": "Dragon Roll",
+      "price": "12.99"
+    },
+    {
+  
+      "title": "Spider Roll",
+      "price": "11.99"
+    },
+    {
+ 
+      "title": "Eel Nigiri",
+      "price": "5.99"
+    },
+    {
+ 
+      "title": "Shrimp Tempura Roll",
+      "price": "9.99"
+    },
+    {
+  
+      "title": "Yellowtail Sashimi",
+    "price": "9.99"
+    }
+  ]
+  
+}
+]

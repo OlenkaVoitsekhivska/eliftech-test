@@ -1,0 +1,8 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__content{
+        padding-right:25px;
+    }
+}
