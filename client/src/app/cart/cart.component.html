@@ -1,34 +1,9 @@
-<!-- <div class="cart">
-  <app-form class="cart__form scrollable"></app-form>
-  <app-cart-contents [data]="cart" class="cart__content"></app-cart-contents>
-</div>
-<div class="total-sbmt-group">
-  <h3>Total price:</h3>
-  <app-button label="submit" type="accent"></app-button>
-</div> -->
-
-<!-- <div class="cart">
-  <app-form
-    class="cart__form scrollable"
-    (formData)="handleFormData($event)"
-  ></app-form>
-  <app-cart-contents class="cart__content"></app-cart-contents>
-</div>
-<div class="total-sbmt-group">
-  <h3>Total price: {{ price$ | async }}</h3>
-  <app-button
-    label="submit"
-    type="primary"
-    (customClick)="handleSubmit($event)"
-  ></app-button>
-</div> -->
-
 <div class="cart">
   <app-form class="cart__form scrollable"></app-form>
   <app-cart-contents class="cart__content"></app-cart-contents>
 </div>
 <div class="total-sbmt-group">
-  <h3>Total price: {{ price$ | async }}</h3>
+  <h3>Total price: {{ price$ | async | currency }}</h3>
   <app-button
     label="submit"
     type="primary"

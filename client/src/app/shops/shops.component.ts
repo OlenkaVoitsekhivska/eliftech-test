@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopsService } from '../core/services/shops.service';
-import { Observable, map, switchMap, tap } from 'rxjs';
-import { Restaurant } from '../models/restaurant';
+import { Observable, combineLatest, map } from 'rxjs';
 import { MenuItem } from '../models/menu-item';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../core/services/cart.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/shops/reducers';
+import * as shopActions from './../../app/store/shops/actions';
+import * as cartActions from './../../app/store/cart/actions';
+import { shopsSelector } from '../store/shops/selectors';
 
 @Component({
   selector: 'app-shops',
@@ -12,45 +14,42 @@ import { CartService } from '../core/services/cart.service';
   styleUrls: ['./shops.component.scss'],
 })
 export class ShopsComponent implements OnInit {
-  menuItems: MenuItem[] = [];
+  shops$ = this.store.select(shopsSelector);
 
-  shops$!: Observable<Restaurant[]>;
+  itemsForDisplay$!: Observable<any>;
 
-  shopId: string = '';
-
-  items$!: Observable<MenuItem[]>;
-
-  singleMenu$!: Observable<Restaurant>;
+  shopId = '';
 
   constructor(
-    private s: ShopsService,
     private activatedRoute: ActivatedRoute,
-    private cartS: CartService
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-    this.s.getRestaurants();
-    this.shops$ = this.s.restaurants$;
-    this.singleMenu$ = this.s.menu;
-    // this.shopId = this.route.snapshot.paramMap.get('id')!;
-
-    this.activatedRoute.params
-      .pipe(
-        tap((data) => {
-          this.shopId = data['id'];
-          console.log('this is pipe', data['id']);
-        }),
-        map((params) => this.s.getMenuByPlace(params['id']))
-      )
-      .subscribe();
-  }
-  getMenuItems(shops: Restaurant[]): MenuItem[] {
-    return this.s.getAllMenuItems(shops);
+    this.store.dispatch(shopActions.getShops());
+    this.selectItemsForDisplay();
   }
 
   handleClick(event: Event, prod: MenuItem) {
-    console.log('Caught click', event, prod);
+    // this.store.dispatch(cartActions.addItem({ item: prod }));
+    this.store.dispatch(cartActions.addItem({ item: prod }));
+  }
 
-    this.cartS.addItem(prod);
+  private selectItemsForDisplay() {
+    this.itemsForDisplay$ = combineLatest([
+      this.activatedRoute.params,
+      this.shops$,
+    ]).pipe(
+      map(([params, shops]) => {
+        const shopId = params['id'];
+        this.shopId = shopId;
+        if (!shopId) {
+          return shops
+            .map(({ menu }) => menu)
+            .reduce((acc, menu) => acc.concat(menu), []);
+        }
+        return shops.find((shop) => shop._id === shopId)?.menu;
+      })
+    );
   }
 }

@@ -1,5 +1,5 @@
-<ng-container *ngIf="places.length">
-  <div *ngFor="let place of places" class="shop">
+<ng-container *ngIf="shops$ | async as shops">
+  <div *ngFor="let place of shops" class="shop">
     <app-card type="shop">
       <a
         routerLink="/shops/{{ place._id }}"

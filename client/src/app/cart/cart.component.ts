@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../core/services/cart.service';
 import { MenuItem } from '../models/menu-item';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { SubmitService } from './services/submit.service';
+import { AppState } from '../store/shops/reducers';
+import { Store } from '@ngrx/store';
+import { cartSelector } from '../store/cart/selectors';
 
 interface ProdData {
   image: string;
@@ -16,36 +19,23 @@ interface ProdData {
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  cartData: ProdData[] = [
-    {
-      image: 'https://example.com/item1.jpg',
-      title: 'Organic Apples',
-      price: 2.99,
-    },
-    {
-      image: 'https://example.com/item2.jpg',
-      title: 'Grass-Fed Beef',
-      price: 12.99,
-    },
-  ];
-
   isDisabled: boolean = true;
 
-  cart: MenuItem[] = [];
+  price$ = this.store
+    .select(cartSelector)
+    .pipe(
+      map((cart) =>
+        cart.items.reduce((acc, item) => acc + Number(item.price) * item.qnt, 0)
+      )
+    );
 
-  price$!: Observable<number>;
+  constructor(
+    private cartS: CartService,
+    private submitS: SubmitService,
+    private store: Store<AppState>
+  ) {}
 
-  constructor(private cartS: CartService, private submitS: SubmitService) {}
-
-  ngOnInit() {
-    this.getPrice();
-    this.cart = this.cartS.getItems();
-    this.price$ = this.cartS.price$;
-  }
-  getPrice() {
-    this.cartS.calculatePrice();
-  }
-
+  ngOnInit() {}
   handleSubmit(label: string) {
     console.log(label);
     this.submitS.updateClicks(true);

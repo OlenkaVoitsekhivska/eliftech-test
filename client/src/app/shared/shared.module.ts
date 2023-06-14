@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     CartProductCardComponent,
     MatIconModule,
     HttpClientModule,
+    MatInputModule,
   ],
 })
 export class SharedModule {}

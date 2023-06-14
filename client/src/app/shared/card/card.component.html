@@ -3,6 +3,7 @@
     <ng-content select=".card__img"></ng-content>
     <mat-card-content>
       <ng-content select=".card__text"></ng-content>
+      <ng-content select=".card__price"></ng-content>
     </mat-card-content>
   </div>
   <mat-card-actions *ngIf="type === 'product'" align="end">

@@ -18,11 +18,15 @@ export class ShopsService {
 
   URL = 'http://localhost:3000/api';
 
-  getRestaurants(): void {
+  // getRestaurants(): void {
+  //   const url = `${this.URL}/restaurants`;
+  //   this.http
+  //     .get<Restaurant[]>(url)
+  //     .subscribe((data) => this.restaurants.next(data));
+  // }
+  getRestaurants(): Observable<Restaurant[]> {
     const url = `${this.URL}/restaurants`;
-    this.http
-      .get<Restaurant[]>(url)
-      .subscribe((data) => this.restaurants.next(data));
+    return this.http.get<Restaurant[]>(url);
   }
 
   getAllMenuItems(shops: Restaurant[]): MenuItem[] {

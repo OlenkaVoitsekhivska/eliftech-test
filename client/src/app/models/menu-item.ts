@@ -3,4 +3,5 @@ export interface MenuItem {
   title: string;
   price: string;
   qnt: number;
+  shopId: string;
 }
