@@ -2,7 +2,10 @@ import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitService } from '../../services/submit.service';
 import { requiredLength } from './validators';
-import { distinctUntilChanged, skipWhile } from 'rxjs';
+import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs';
+import { AppState } from 'src/app/store/shops/reducers';
+import { Store } from '@ngrx/store';
+import * as cartActions from '../../../../app/store/cart/actions';
 
 @Component({
   selector: 'app-form',
@@ -25,21 +28,26 @@ export class FormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private submitS: SubmitService
+    private submitS: SubmitService,
+    private store: Store<AppState>
   ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       address: ['', Validators.required],
     });
 
     this.form.valueChanges
-      .pipe(skipWhile((f) => !f.name || !f.email || !f.phone || !f.address))
+      .pipe(
+        skipWhile((f) => !f.name || !f.email || !f.phone || !f.address),
+        debounceTime(1000)
+      )
       .subscribe((data) => {
         console.log('FORM CHANGES', data);
-        this.submitS.updateFormData(data);
+        this.store.dispatch(cartActions.placeOrder({ form: data }));
+        // this.submitS.updateFormData(data);
       });
 
     // this.cleanAfterSubmit.subscribe((c) => {

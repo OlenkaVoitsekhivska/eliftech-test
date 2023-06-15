@@ -30,7 +30,7 @@ export class ShopsComponent implements OnInit {
     this.selectItemsForDisplay();
   }
 
-  handleClick(event: Event, prod: MenuItem) {
+  handleClick(prod: MenuItem) {
     // this.store.dispatch(cartActions.addItem({ item: prod }));
     this.store.dispatch(cartActions.addItem({ item: prod }));
   }
