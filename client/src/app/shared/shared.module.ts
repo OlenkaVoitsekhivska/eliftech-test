@@ -1,16 +1,21 @@
+//MODULES
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from './button/button.component';
 import { MatButtonModule } from '@angular/material/button';
-import { CardComponent } from './card/card.component';
 import { MatCardModule } from '@angular/material/card';
-import { InputComponent } from './input/input.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { CartProductCardComponent } from './cart-product-card/cart-product-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+//COMPONENTS
+import { ButtonComponent } from 'src/app/shared/button/button.component';
+import { CardComponent } from 'src/app/shared/card/card.component';
+import { InputComponent } from 'src/app/shared/input/input.component';
+import { CartProductCardComponent } from 'src/app/shared/cart-product-card/cart-product-card.component';
+import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/successful-order.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     CardComponent,
     InputComponent,
     CartProductCardComponent,
+    SuccessfulOrderComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatIconModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   exports: [
     ButtonComponent,
@@ -38,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     HttpClientModule,
     MatInputModule,
+    MatSnackBarModule,
+    SuccessfulOrderComponent,
   ],
 })
 export class SharedModule {}

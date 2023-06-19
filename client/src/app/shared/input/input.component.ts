@@ -1,17 +1,9 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Optional,
-  Self,
-  forwardRef,
-} from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
+  NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  NgControlStatus,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -25,17 +17,21 @@ import { ErrorStateMatcher } from '@angular/material/core';
       useExisting: forwardRef(() => InputComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: InputComponent,
+    },
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() type: 'text' | 'email' | 'phone' | 'number' = 'text';
-  @Input() errorMessage = 'ERROR';
+  @Input() public label: string = '';
+  @Input() public placeholder: string = '';
+  @Input() public type: 'text' | 'email' | 'phone' | 'number' = 'text';
+  @Input() public errorMessage = 'ERROR';
 
   readonly errorStateMatcher: ErrorStateMatcher = {
     isErrorState: (ctrl: FormControl) => ctrl && ctrl.invalid && ctrl.dirty,
-    // isErrorState: (ctrl: FormControl) => ctrl.invalid && ctrl.dirty,
   };
 
   private inputValue: any;
@@ -47,13 +43,10 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   set value(v: any) {
-    if (v !== this.inputValue && v.trim().length > 0) {
-      if (this.type === 'phone') {
-        this.inputValue = +v;
-        this.onChange(+v);
-      }
-      this.inputValue = v;
-      this.onChange(v);
+    const trimmedInput = v.trim();
+    if (trimmedInput !== this.inputValue && trimmedInput.length > 0) {
+      this.inputValue = this.type === 'phone' ? +trimmedInput : trimmedInput;
+      this.onChange(this.inputValue);
     }
   }
 

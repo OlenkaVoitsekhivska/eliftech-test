@@ -1,18 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { MenuItem } from 'src/app/models/menu-item';
-import { Restaurant } from 'src/app/models/restaurant';
-import { AppState } from './reducers';
-import { User } from '../shops/reducers';
+import { User } from 'src/app/store/models/user';
 
 export const addItem = createAction(
   '[Shops Component] Add product',
   props<{ item: MenuItem }>()
 );
-
-// export const addItemSuccess = createAction(
-//   '[Shops Component] Add product success',
-//   props<{ item: MenuItem }>()
-// );
 
 export const deleteItem = createAction(
   '[Cart component] Delete product',
@@ -24,7 +17,21 @@ export const editQntItem = createAction(
   props<{ item: MenuItem; qnt: number }>()
 );
 
+export const updateForm = createAction(
+  '[Cart component] Update order form',
+  props<{ form: User }>()
+);
+
 export const placeOrder = createAction(
   '[Cart component] Place order',
-  props<{ form: User }>()
+  props<{ user: User; items: MenuItem[] }>()
+);
+
+export const placeOrderSuccess = createAction(
+  '[Cart component] Place order success',
+  props<{ success: boolean; order: { user: User; items: MenuItem[] } }>()
+);
+
+export const clearCart = createAction(
+  '[Cart component] Clear the contents of the cart'
 );

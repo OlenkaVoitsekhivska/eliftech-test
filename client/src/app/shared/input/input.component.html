@@ -7,7 +7,7 @@
     required
     type="{{ type }}"
     [(ngModel)]="value"
-    #input
+    #input="ngModel"
   />
   <mat-error *ngIf="errorStateMatcher">{{ errorMessage }}</mat-error>
 </mat-form-field>

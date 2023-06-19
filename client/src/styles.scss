@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a{
@@ -28,3 +29,25 @@ a{
     background-color: #C2185B; /* Color of the scrollbar thumb */
     border-radius: 4px;
   }
+
+
+
+.success-snackbar  .mdc-snackbar__surface{
+  background-color: rgb(107, 202, 107) !important;
+  border-radius: 4px;
+  font-weight: 500;
+  .mdc-snackbar__label, .mdc-button__label{
+    color: white;
+  }
+
+}
+
+
+.error-snackbar .mdc-snackbar__surface{
+  background-color: rgb(172, 0, 0) !important;
+  border-radius: 4px;
+  font-weight: 500;
+  .mdc-snackbar__label, .mdc-button__label{
+    color: white;
+  }
+}

@@ -6,7 +6,10 @@ const placeOrder = require("../../controllers/placeOrder");
 
 const wrapper = require("../../middleware/ctrlWrapper");
 
-router.post("/", wrapper(placeOrder));
+const {validationWrapper} = require("../../helpers/validationWrapper");
+const {orderSchema} = require("../../helpers/orderValidation");
+
+router.post("/", validationWrapper(orderSchema), wrapper(placeOrder));
 
 
 module.exports = router;

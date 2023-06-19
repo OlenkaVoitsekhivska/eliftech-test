@@ -6,12 +6,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  @Input() label: string = '';
-  @Input() type: 'primary' | 'accent' = 'primary';
-  @Output() customClick: EventEmitter<any> = new EventEmitter();
+  @Input() public label: string = '';
+  @Input() public type: 'primary' | 'accent' = 'primary';
+  @Input() public disabled = false;
+  @Output() public customClick: EventEmitter<any> = new EventEmitter();
 
-  handleClick(label: string) {
-    console.log('I have been clicked');
+  public handleClick(label: string) {
     this.customClick.emit(label);
   }
 }

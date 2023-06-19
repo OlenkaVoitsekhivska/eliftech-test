@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, combineLatest, map } from 'rxjs';
-import { MenuItem } from '../models/menu-item';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../store/shops/reducers';
-import * as shopActions from './../../app/store/shops/actions';
-import * as cartActions from './../../app/store/cart/actions';
-import { shopsSelector } from '../store/shops/selectors';
+
+import { Observable, combineLatest, map } from 'rxjs';
+
+//MODELS
+import { MenuItem } from 'src/app/models/menu-item';
+import { AppState } from 'src/app/store/models/appState';
+
+//STORE
+import * as shopActions from 'src/app/store/shops/actions';
+import * as cartActions from 'src/app/store/cart/actions';
+import { shopsSelector } from 'src/app/store/shops/selectors';
 
 @Component({
   selector: 'app-shops',
@@ -14,11 +19,9 @@ import { shopsSelector } from '../store/shops/selectors';
   styleUrls: ['./shops.component.scss'],
 })
 export class ShopsComponent implements OnInit {
-  shops$ = this.store.select(shopsSelector);
+  public itemsForDisplay$!: Observable<any>;
 
-  itemsForDisplay$!: Observable<any>;
-
-  shopId = '';
+  private shops$ = this.store.select(shopsSelector);
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,8 +33,7 @@ export class ShopsComponent implements OnInit {
     this.selectItemsForDisplay();
   }
 
-  handleClick(prod: MenuItem) {
-    // this.store.dispatch(cartActions.addItem({ item: prod }));
+  public handleClick(prod: MenuItem) {
     this.store.dispatch(cartActions.addItem({ item: prod }));
   }
 
@@ -42,7 +44,7 @@ export class ShopsComponent implements OnInit {
     ]).pipe(
       map(([params, shops]) => {
         const shopId = params['id'];
-        this.shopId = shopId;
+
         if (!shopId) {
           return shops
             .map(({ menu }) => menu)

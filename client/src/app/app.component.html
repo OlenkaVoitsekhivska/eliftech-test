@@ -1,8 +1,10 @@
 <div class="container">
   <nav>
     <div>
-      <a routerLink="shops">Shop</a>
-      <a routerLink="cart">Shopping Cart</a>
+      <a routerLink="shops" routerLinkActive="active">Shop</a>
+      <a routerLink="cart" routerLinkActive="active"
+        >Shopping Cart ({{ itemsInCartNumber$ | async }})</a
+      >
     </div>
   </nav>
   <router-outlet></router-outlet>

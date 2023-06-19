@@ -11,11 +11,11 @@ const userSchema = new Schema ({
 
 const orderSchema = Schema(
   {
-    client: {
+    user: {
       type: userSchema,
       required: true,
     },
-    order: {
+    items: {
       type: [menuItemSchema],
       required: true,
     },

@@ -1,21 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { AppState } from '../shops/reducers';
 import * as actions from './actions';
-
-const initialState: AppState = {
-  shops: [],
-  cart: {
-    user: null,
-    items: [],
-  },
-};
+import { initialState } from '../initialState';
 
 export const cartReducer = createReducer(
   initialState.cart,
   on(actions.addItem, (state, { item }) => {
-    console.log('INCOMING ITEM FOR ORDER', item);
     const inCart = state.items.find((prod) => prod._id === item._id);
-    // console.log('I FOUND THIS THING', inCart);
     if (inCart) {
       return {
         ...state,
@@ -41,13 +31,17 @@ export const cartReducer = createReducer(
     ),
   })),
 
-  on(actions.placeOrder, (state, { form }) => {
+  on(actions.updateForm, (state, { form }) => {
     console.log('FORM FROM REDUCER', form);
     return {
       ...state,
       user: form,
     };
-  })
-);
+  }),
+  on(actions.placeOrderSuccess, (state) => state),
 
-export { AppState };
+  on(actions.clearCart, () => ({
+    user: null,
+    items: [],
+  }))
+);

@@ -1,8 +1,10 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ShopsService } from 'src/app/core/services/shops.service';
 import { Injectable } from '@angular/core';
-import * as shopActions from './actions';
+
 import { map, switchMap } from 'rxjs';
+
+import { ShopsService } from 'src/app/core/services/shops.service';
+import * as shopActions from 'src/app/store/shops/actions';
 
 @Injectable()
 export class ShopEffects {
@@ -15,10 +17,9 @@ export class ShopEffects {
     this.actions$.pipe(
       ofType(shopActions.getShops),
       switchMap(() =>
-        this.shopService.getRestaurants().pipe(
-          map((shops) => shopActions.getShopsSuccess({ shops }))
-          //   catchError(() => of(loadPhotosError()))
-        )
+        this.shopService
+          .getRestaurants()
+          .pipe(map((shops) => shopActions.getShopsSuccess({ shops })))
       )
     )
   );
