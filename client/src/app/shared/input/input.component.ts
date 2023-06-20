@@ -1,11 +1,5 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -17,22 +11,13 @@ import { ErrorStateMatcher } from '@angular/material/core';
       useExisting: forwardRef(() => InputComponent),
       multi: true,
     },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: InputComponent,
-    },
   ],
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() public label: string = '';
   @Input() public placeholder: string = '';
-  @Input() public type: 'text' | 'email' | 'phone' | 'number' = 'text';
+  @Input() public type: 'text' | 'email' | 'tel' | 'number' = 'text';
   @Input() public errorMessage = 'ERROR';
-
-  readonly errorStateMatcher: ErrorStateMatcher = {
-    isErrorState: (ctrl: FormControl) => ctrl && ctrl.invalid && ctrl.dirty,
-  };
 
   private inputValue: any;
   private onChange!: (_: any) => void;
@@ -45,7 +30,7 @@ export class InputComponent implements ControlValueAccessor {
   set value(v: any) {
     const trimmedInput = v.trim();
     if (trimmedInput !== this.inputValue && trimmedInput.length > 0) {
-      this.inputValue = this.type === 'phone' ? +trimmedInput : trimmedInput;
+      this.inputValue = this.type === 'tel' ? +trimmedInput : trimmedInput;
       this.onChange(this.inputValue);
     }
   }

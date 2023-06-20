@@ -1,33 +1,44 @@
 <ng-container *ngIf="showForm; else noItems">
   <form [formGroup]="form">
-    <app-input
-      formControlName="name"
-      label="Name:"
-      placeholder="Name"
-      type="text"
-      errorMessage="{{ errorMessage.name }}"
-    ></app-input>
+    <div [ngClass]="{ red: name?.invalid && name?.dirty, green: name?.valid }">
+      <app-input
+        formControlName="name"
+        label="Name:"
+        placeholder="Name"
+        type="text"
+      >
+      </app-input>
+    </div>
+    <mat-error *ngIf="name?.invalid && name?.dirty">{{
+      errorMessage.name
+    }}</mat-error>
     <app-input
       formControlName="email"
       label="Email:"
       placeholder="Email"
       type="email"
-      errorMessage="{{ errorMessage.email }}"
     ></app-input>
+    <mat-error *ngIf="email?.invalid && email?.dirty">{{
+      errorMessage.email
+    }}</mat-error>
     <app-input
       formControlName="phone"
       label="Phone:"
       placeholder="Phone"
-      type="phone"
-      errorMessage="{{ errorMessage.phone }}"
+      type="tel"
     ></app-input>
+    <mat-error *ngIf="phone?.invalid && phone?.dirty">{{
+      errorMessage.phone
+    }}</mat-error>
     <app-input
       formControlName="address"
       label="Address:"
       placeholder="Address"
-      type="email"
-      errorMessage="{{ errorMessage.address }}"
+      type="text"
     ></app-input>
+    <mat-error *ngIf="address?.invalid && address?.dirty">{{
+      errorMessage.address
+    }}</mat-error>
   </form>
   <app-cart-contents></app-cart-contents>
   <h3>Total price: {{ price$ | async | currency }}</h3>

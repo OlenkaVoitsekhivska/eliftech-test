@@ -16,6 +16,7 @@ import { CardComponent } from 'src/app/shared/card/card.component';
 import { InputComponent } from 'src/app/shared/input/input.component';
 import { CartProductCardComponent } from 'src/app/shared/cart-product-card/cart-product-card.component';
 import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/successful-order.component';
+import { SetAttributeDirective } from './directives/set-attribute.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/succes
     InputComponent,
     CartProductCardComponent,
     SuccessfulOrderComponent,
+    SetAttributeDirective,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/succes
     MatInputModule,
     MatSnackBarModule,
     SuccessfulOrderComponent,
+    SetAttributeDirective,
   ],
 })
 export class SharedModule {}

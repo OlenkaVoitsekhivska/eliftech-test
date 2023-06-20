@@ -2,12 +2,10 @@
   <mat-label>{{ label }}</mat-label>
   <input
     matInput
-    [errorStateMatcher]="errorStateMatcher"
     placeholder="{{ placeholder }}"
     required
     type="{{ type }}"
     [(ngModel)]="value"
     #input="ngModel"
   />
-  <mat-error *ngIf="errorStateMatcher">{{ errorMessage }}</mat-error>
 </mat-form-field>

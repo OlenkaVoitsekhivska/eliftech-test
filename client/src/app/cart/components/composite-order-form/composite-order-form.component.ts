@@ -14,6 +14,7 @@ import { cartSelector } from 'src/app/store/cart/selectors';
 import { AppState } from 'src/app/store/models/appState';
 import * as cartActions from 'src/app/store/cart/actions';
 import { MenuItem } from 'src/app/models/menu-item';
+import { PATTERNS } from 'src/app/regex-patterns/inputPatterns';
 
 @Component({
   selector: 'app-composite-order-form',
@@ -42,6 +43,7 @@ export class CompositeOrderFormComponent implements OnInit, OnDestroy {
     phone: `${this.errorBlueprint} phone`,
     address: `${this.errorBlueprint} address`,
   };
+  public validationPatterns = PATTERNS;
   public showForm = false;
 
   private cartState$: Observable<{ items: MenuItem[] }> =
@@ -87,9 +89,22 @@ export class CompositeOrderFormComponent implements OnInit, OnDestroy {
 
   private initForm() {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(this.validationPatterns.EMAIL),
+        ],
+      ],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.validationPatterns.PHONE),
+        ],
+      ],
       address: ['', Validators.required],
     });
   }
