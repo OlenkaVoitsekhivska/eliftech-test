@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/store/models/appState';
 import { cartSelector } from 'src/app/store/cart/selectors';
 import { TranslateService } from '@ngx-translate/core';
+import { CurrencyService } from './core/services/currency.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private currencyService: CurrencyService
   ) {
     this.translateService.setDefaultLang('en');
     this.translateService.use(localStorage.getItem('language') || 'en');

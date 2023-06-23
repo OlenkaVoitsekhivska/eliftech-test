@@ -38,7 +38,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class CompositeOrderFormComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
-  public price$ = this.store
+  public price$: Observable<number> = this.store
     .select(cartSelector)
     .pipe(
       map((cart) =>

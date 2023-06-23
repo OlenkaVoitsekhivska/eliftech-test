@@ -17,6 +17,7 @@ import { ButtonComponent } from 'src/app/shared/button/button.component';
 import { CardComponent } from 'src/app/shared/card/card.component';
 import { CartProductCardComponent } from 'src/app/shared/cart-product-card/cart-product-card.component';
 import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/successful-order.component';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/succes
     CardComponent,
     CartProductCardComponent,
     SuccessfulOrderComponent,
+    CurrencyPipe,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { SuccessfulOrderComponent } from 'src/app/shared/successful-order/succes
     MatSnackBarModule,
     SuccessfulOrderComponent,
     MatSelectModule,
+    CurrencyPipe,
   ],
 })
 export class SharedModule {}

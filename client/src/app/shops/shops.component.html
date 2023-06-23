@@ -9,7 +9,9 @@
           <h3 class="card__text">{{ prod.title }}</h3>
           <p class="card__price">
             {{
-              prod.price | currency : ("CURRENCY" | translate) : "symbol-narrow"
+              prod.price
+                | convert : ("CURRENCY" | translate)
+                | currency : ("CURRENCY" | translate) : "symbol-narrow"
             }}
           </p>
           <app-button
