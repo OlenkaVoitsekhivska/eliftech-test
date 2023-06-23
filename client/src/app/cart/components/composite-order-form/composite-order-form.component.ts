@@ -1,7 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Router } from '@angular/router';
+
+//Form
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+//Store
 import { Store } from '@ngrx/store';
+import { cartSelector } from 'src/app/store/cart/selectors';
+import { AppState } from 'src/app/store/models/appState';
+import * as cartActions from 'src/app/store/cart/actions';
+
 import {
   BehaviorSubject,
   Observable,
@@ -10,16 +23,18 @@ import {
   map,
   tap,
 } from 'rxjs';
-import { cartSelector } from 'src/app/store/cart/selectors';
-import { AppState } from 'src/app/store/models/appState';
-import * as cartActions from 'src/app/store/cart/actions';
+
+//Models
 import { MenuItem } from 'src/app/models/menu-item';
 import { PATTERNS } from 'src/app/regex-patterns/inputPatterns';
+import { InputTypeEnum } from 'src/app/models/enums';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-composite-order-form',
   templateUrl: './composite-order-form.component.html',
   styleUrls: ['./composite-order-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompositeOrderFormComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
@@ -35,16 +50,9 @@ export class CompositeOrderFormComponent implements OnInit, OnDestroy {
       )
     );
 
-  public errorBlueprint = 'Enter a valid';
-
-  public errorMessage = {
-    name: `${this.errorBlueprint} name`,
-    email: `${this.errorBlueprint} email`,
-    phone: `${this.errorBlueprint} phone`,
-    address: `${this.errorBlueprint} address`,
-  };
   public validationPatterns = PATTERNS;
   public showForm = false;
+  public inputTypeEnum = InputTypeEnum;
 
   private cartState$: Observable<{ items: MenuItem[] }> =
     this.store.select(cartSelector);
@@ -65,10 +73,13 @@ export class CompositeOrderFormComponent implements OnInit, OnDestroy {
     return this.form.get('address');
   }
 
+  CURRENCY_CODE!: string;
+
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    public errorMatcher: ErrorStateMatcher
   ) {}
 
   ngOnInit() {

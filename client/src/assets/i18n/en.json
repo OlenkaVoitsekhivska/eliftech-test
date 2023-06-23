@@ -1,0 +1,40 @@
+{
+    "APP_COMPONENT": {
+        "SHOP": "Shop",
+        "CART": "Shopping Cart",
+        "LANGUAGE": "Language"
+    },
+    "FORM":{
+        "NAME":{
+            "LABEL":"Name:",
+            "PLACEHOLDER":"Name",
+            "ERROR": "Enter a valid name"
+        },
+        "EMAIL":{
+            "LABEL":"Email:",
+            "PLACEHOLDER":"Email",
+            "ERROR": "Enter a valid email"
+        },
+        "PHONE":{
+            "LABEL":"Phone:",
+            "PLACEHOLDER":"Phone",
+            "ERROR": "Enter a valid phone"
+        },
+        "ADDRESS":{
+            "LABEL":"Address:",
+            "PLACEHOLDER":"Address",
+            "ERROR": "Enter a valid address"
+        },
+        "EMPTY":"The cart is empty"
+    },
+    "CURRENCY":"USD",
+    "BUTTONS":{
+        "DELETE":"delete",
+        "ADD":"add to cart",
+        "PLACE_ORDER":"submit"
+    },
+    "ORDER":{
+        "SUCCESS":"Order successfully placed! Our operator will contact you shortly."
+    }
+    
+}

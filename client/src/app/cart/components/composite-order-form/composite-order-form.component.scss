@@ -1,18 +1,11 @@
-h2{
+h2 {
     font-size: 32px;
 }
 
-.red{
-
-    ::ng-deep .mat-mdc-text-field-wrapper,.mdc-text-field{
-        border: 4px solid red !important;
-        outline:none;
-    }
+mat-form-field {
+    width: 100%;
 }
-.green{
 
-    ::ng-deep .mat-mdc-text-field-wrapper,.mdc-text-field{
-        border:4px solid green !important;
-        outline:none;
-    }
+.input {
+    margin-bottom: 25px;
 }

@@ -26,7 +26,7 @@ export class CartEffects {
           ),
           tap(() => {
             this.snackBar.open('Order successfully placed!', 'Close', {
-              duration: 500, // Duration in milliseconds
+              duration: 1000, // Duration in milliseconds
               panelClass: ['success-snackbar'], // CSS class for custom styling
               verticalPosition: 'top',
             });

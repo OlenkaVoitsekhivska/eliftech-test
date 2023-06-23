@@ -7,9 +7,13 @@
         <app-card>
           <img src="./../../assets/prod-img.png" alt="" class="card__img" />
           <h3 class="card__text">{{ prod.title }}</h3>
-          <p class="card__price">{{ prod.price | currency }}</p>
+          <p class="card__price">
+            {{
+              prod.price | currency : ("CURRENCY" | translate) : "symbol-narrow"
+            }}
+          </p>
           <app-button
-            label="add to cart"
+            [label]="'BUTTONS.ADD' | translate"
             class="card__btn"
             (customClick)="handleClick(prod)"
           ></app-button>
