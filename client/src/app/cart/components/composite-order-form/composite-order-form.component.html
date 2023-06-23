@@ -55,7 +55,7 @@
 
   <app-cart-contents></app-cart-contents>
   <h3>
-    Total price:
+    {{ "FORM.TOTAL_PRICE" | translate }}
     {{ price$ | async | currency : ("CURRENCY" | translate) : "symbol-narrow" }}
   </h3>
   <app-button

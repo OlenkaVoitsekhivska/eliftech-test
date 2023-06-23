@@ -25,7 +25,8 @@
             "PLACEHOLDER":"Address",
             "ERROR": "Enter a valid address"
         },
-        "EMPTY":"The cart is empty"
+        "EMPTY":"The cart is empty",
+        "TOTAL_PRICE":"Total price"
     },
     "CURRENCY":"USD",
     "BUTTONS":{
