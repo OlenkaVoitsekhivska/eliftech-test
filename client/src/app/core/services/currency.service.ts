@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { shareReplay, tap } from 'rxjs';
 import { environment } from 'src/environment/environment';
 
 @Injectable({
@@ -10,15 +11,14 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) {
     if (!sessionStorage.getItem('dollarRate')) {
-      this.getCurrencyRate();
+      this.getCurrencyRate().subscribe();
     }
   }
 
   getCurrencyRate() {
-    this.http
-      .get(this.URL)
-      .subscribe((res: any) =>
-        sessionStorage.setItem('dollarRate', res[1].buy)
-      );
+    return this.http.get(this.URL).pipe(
+      shareReplay(1),
+      tap((res: any) => sessionStorage.setItem('dollarRate', res[1].buy))
+    );
   }
 }

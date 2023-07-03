@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 
 import { AppState } from 'src/app/store/models/appState';
 import { cartSelector } from 'src/app/store/cart/selectors';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   itemsInCartNumber$: Observable<number> = this.store
     .select(cartSelector)
     .pipe(
-      map(({ items }) =>
+      map(({ user, items }) =>
         items.reduce((acc: any, item: { qnt: any }) => acc + item.qnt, 0)
       )
     );

@@ -1,8 +1,9 @@
 <button
   mat-raised-button
-  disabled="{{ disabled }}"
-  color="{{ type }}"
+  [disabled]="disabled"
+  [color]="type"
   (click)="handleClick(this.label)"
+  data-testid="button"
 >
   {{ label }}
 </button>

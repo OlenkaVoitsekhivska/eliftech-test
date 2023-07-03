@@ -4,33 +4,34 @@ import * as cartActions from './actions';
 import { map, switchMap, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShopsService } from 'src/app/core/services/shops.service';
+import { MenuItem } from 'src/app/models/menu-item';
+import { User } from '../models/user';
 
 @Injectable()
 export class CartEffects {
   constructor(
     private actions$: Actions,
-    private shopsService: ShopsService,
-    private snackBar: MatSnackBar
+    private shopsService: ShopsService // private snackBar: MatSnackBar
   ) {}
 
   placeOrder$ = createEffect(() =>
     this.actions$.pipe(
       ofType(cartActions.placeOrder),
-      switchMap((order: any) =>
+      switchMap((order: { user: User; items: MenuItem[] }) =>
         this.shopsService.postOrder(order).pipe(
           map((result) =>
             cartActions.placeOrderSuccess({
               success: Boolean(result.succes),
               order: result.order,
             })
-          ),
-          tap(() => {
-            this.snackBar.open('Order successfully placed!', 'Close', {
-              duration: 1000, // Duration in milliseconds
-              panelClass: ['success-snackbar'], // CSS class for custom styling
-              verticalPosition: 'top',
-            });
-          })
+          )
+          // tap(() => {
+          //   this.snackBar.open('Order successfully placed!', 'Close', {
+          //     duration: 1000,
+          //     panelClass: ['success-snackbar'],
+          //     verticalPosition: 'top',
+          //   });
+          // })
         )
       )
     )

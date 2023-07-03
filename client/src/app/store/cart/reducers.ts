@@ -32,7 +32,6 @@ export const cartReducer = createReducer(
   })),
 
   on(actions.updateForm, (state, { form }) => {
-    console.log('FORM FROM REDUCER', form);
     return {
       ...state,
       user: form,

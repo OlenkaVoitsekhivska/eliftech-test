@@ -8,7 +8,7 @@ export class CurrencyPipe implements PipeTransform {
     if (!value) {
       return 0;
     }
-    let updValue = typeof value === 'string' ? +value : value;
+    const updValue = typeof value === 'string' ? +value : value;
     if (currency === 'UAH') {
       const rate = this.getCurrencyRate();
       return updValue * rate;

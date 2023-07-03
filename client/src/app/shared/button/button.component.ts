@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  @Input() public label: string = '';
+  @Input() public label = '';
   @Input() public type: 'primary' | 'accent' = 'primary';
   @Input() public disabled = false;
   @Output() public customClick: EventEmitter<any> = new EventEmitter();
