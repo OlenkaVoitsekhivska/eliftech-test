@@ -13,17 +13,7 @@ import { MockConvertPipe } from '../shared/testing/mocks/convertPipe';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
-
-const selectOptions = {
-  uk: {
-    value: 'uk',
-    innerText: 'Українська',
-  },
-  en: {
-    value: 'en',
-    innerText: 'English',
-  },
-};
+import { selectOptions, mockSingleItem } from 'src/app/shared/testing/mockData';
 
 describe('ShopsComponent', () => {
   let store: MockStore;
@@ -31,13 +21,6 @@ describe('ShopsComponent', () => {
   let fixture: ComponentFixture<ShopsComponent>;
   let scheduler: TestScheduler;
   let translateService: TranslateService;
-  const singleItem = {
-    _id: '6489e4ca99c9aa9775763a45',
-    title: 'Classic Burger',
-    price: '9.99',
-    qnt: 1,
-    shopId: '64720b1fbaf6ac095a6a48e4',
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -80,15 +63,15 @@ describe('ShopsComponent', () => {
     expect(dispatchSpy).toHaveBeenCalledWith(getShops());
   });
   it('dispatches addItem action after clicking the menu item', () => {
-    component.itemsForDisplay$ = of([singleItem]);
+    component.itemsForDisplay$ = of([mockSingleItem]);
     fixture.detectChanges();
     const clickHandler = spyOn(component, 'handleClick');
     const addBtn = fixture.debugElement.query(By.directive(ButtonComponent));
 
-    addBtn.triggerEventHandler('customClick', singleItem);
+    addBtn.triggerEventHandler('customClick', mockSingleItem);
     fixture.detectChanges();
 
     expect(clickHandler).toHaveBeenCalled();
-    expect(clickHandler).toHaveBeenCalledWith(singleItem);
+    expect(clickHandler).toHaveBeenCalledWith(mockSingleItem);
   });
 });

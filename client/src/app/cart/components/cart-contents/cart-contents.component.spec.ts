@@ -13,32 +13,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { MockConvertPipe } from 'src/app/shared/testing/mocks/convertPipe';
 import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
 import { queryById } from 'src/app/shared/testing/helpers/queryById';
+import {
+  selectOptions,
+  mockSingleItem,
+  mockStoreInitStateCart,
+} from 'src/app/shared/testing/mockData';
 
 describe('CartContentsComponent', () => {
   let store: MockStore;
   let component: CartContentsComponent;
   let fixture: ComponentFixture<CartContentsComponent>;
   let scheduler: TestScheduler;
-  const singleItem = {
-    _id: '6489e4ca99c9aa9775763a45',
-    title: 'Classic Burger',
-    price: '9.99',
-    qnt: 1,
-    shopId: '64720b1fbaf6ac095a6a48e4',
-  };
   let translateService: TranslateService;
-  const selectOptions = {
-    uk: {
-      value: 'uk',
-      innerText: 'Українська',
-    },
-    en: {
-      value: 'en',
-      innerText: 'English',
-    },
-  };
-
-  const expectedData = [singleItem];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -47,11 +33,7 @@ describe('CartContentsComponent', () => {
       providers: [
         provideMockStore({
           initialState: {
-            shops: [],
-            cart: {
-              user: null,
-              items: [...expectedData],
-            },
+            ...mockStoreInitStateCart,
           },
         }),
       ],
@@ -67,7 +49,7 @@ describe('CartContentsComponent', () => {
     translateService = TestBed.inject(TranslateService);
     translateService.setDefaultLang(selectOptions.en.value); // Set the default language
     translateService.use(selectOptions.en.value);
-    component.cartData$ = of([...expectedData]);
+    component.cartData$ = of([mockSingleItem]);
     fixture.detectChanges();
   });
 
@@ -82,7 +64,7 @@ describe('CartContentsComponent', () => {
       } = {
         a: {
           user: null,
-          items: [...expectedData],
+          items: [mockSingleItem],
         },
       };
 
@@ -90,7 +72,7 @@ describe('CartContentsComponent', () => {
       component.cartData$ = source$.pipe(map((cart) => cart.items));
 
       expectObservable(component.cartData$).toBe('a|', {
-        a: expectedData,
+        a: [mockSingleItem],
       });
     });
   });
@@ -104,7 +86,7 @@ describe('CartContentsComponent', () => {
 
     expect(dispatchSpy).toHaveBeenCalledWith(
       editQntItem({
-        item: singleItem,
+        item: mockSingleItem,
         qnt: 4,
       })
     );
@@ -113,7 +95,7 @@ describe('CartContentsComponent', () => {
   it('calls click handle method', async () => {
     const clickHandler = spyOn(component, 'handleClick');
     const deleteBtn = fixture.debugElement.query(By.css('app-button'));
-    deleteBtn.triggerEventHandler('customClick', singleItem);
+    deleteBtn.triggerEventHandler('customClick', mockSingleItem);
     fixture.detectChanges();
 
     expect(clickHandler).toHaveBeenCalled();
@@ -124,10 +106,12 @@ describe('CartContentsComponent', () => {
     const deleteBtn = fixture.debugElement.query(
       By.css('app-button')
     ).componentInstance;
-    deleteBtn.handleClick(singleItem);
+    deleteBtn.handleClick(mockSingleItem);
     fixture.detectChanges();
 
     expect(dispatchSpy).toHaveBeenCalledTimes(1);
-    expect(dispatchSpy).toHaveBeenCalledWith(deleteItem({ item: singleItem }));
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      deleteItem({ item: mockSingleItem })
+    );
   });
 });

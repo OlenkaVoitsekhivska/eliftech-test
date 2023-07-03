@@ -12,6 +12,7 @@ import { TranslateTestingModule } from 'ngx-translate-testing';
 import { TranslateService } from '@ngx-translate/core';
 import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
 import { AppState } from 'src/app/store/models/appState';
+import { selectOptions, mockSingleItem } from 'src/app/shared/testing/mockData';
 
 describe('CompositeOrderFormComponent', () => {
   let component: CompositeOrderFormComponent;
@@ -19,17 +20,6 @@ describe('CompositeOrderFormComponent', () => {
   let store: MockStore<AppState>;
   let scheduler: TestScheduler;
   let translateService: TranslateService;
-
-  const selectOptions = {
-    uk: {
-      value: 'uk',
-      innerText: 'Українська',
-    },
-    en: {
-      value: 'en',
-      innerText: 'English',
-    },
-  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -68,11 +58,7 @@ describe('CompositeOrderFormComponent', () => {
           user: null,
           items: [
             {
-              _id: '6489e4ca99c9aa9775763a45',
-              title: 'Classic Burger',
-              price: '9.99',
-              qnt: 1,
-              shopId: '64720b1fbaf6ac095a6a48e4',
+              ...mockSingleItem,
             },
           ],
         },

@@ -5,17 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { By } from '@angular/platform-browser';
 import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
-
-const selectOptions = {
-  uk: {
-    value: 'uk',
-    innerText: 'Українська',
-  },
-  en: {
-    value: 'en',
-    innerText: 'English',
-  },
-};
+import { selectOptions } from 'src/app/shared/testing/mockData';
 
 describe('SuccessfulOrderComponent', () => {
   let component: SuccessfulOrderComponent;

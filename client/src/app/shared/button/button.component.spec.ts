@@ -12,33 +12,13 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
+import { selectOptions, mockBtnParams } from 'src/app/shared/testing/mockData';
 
 describe('ButtonComponent', () => {
   let component: ButtonComponent;
   let fixture: ComponentFixture<ButtonComponent>;
   let loader: HarnessLoader;
-  const singleItem = {
-    _id: '6489e4ca99c9aa9775763a45',
-    title: 'Classic Burger',
-    price: '9.99',
-    qnt: 1,
-    shopId: '64720b1fbaf6ac095a6a48e4',
-  };
   let translateService: TranslateService;
-  const selectOptions = {
-    uk: {
-      value: 'uk',
-      innerText: 'Українська',
-    },
-    en: {
-      value: 'en',
-      innerText: 'English',
-    },
-  };
-
-  const label = 'delete';
-  const type = 'primary';
-  const disabled = false;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -54,9 +34,9 @@ describe('ButtonComponent', () => {
     fixture = TestBed.createComponent(ButtonComponent);
 
     component = fixture.componentInstance;
-    component.label = label;
-    component.type = type;
-    component.disabled = disabled;
+    component.label = mockBtnParams.label;
+    component.type = mockBtnParams.type as 'accent' | 'primary';
+    component.disabled = mockBtnParams.disabled;
 
     translateService = TestBed.inject(TranslateService);
     translateService.setDefaultLang(selectOptions.en.value); // Set the default language
@@ -72,28 +52,28 @@ describe('ButtonComponent', () => {
 
   it('accepts and displays label', () => {
     const actualLabelText = queryById(fixture, 'button').innerText;
-    expect(actualLabelText).toBe(label);
+    expect(actualLabelText).toBe(mockBtnParams.label);
   });
 
   it('accepts disabled state', () => {
     const actualDisabled = queryById(fixture, 'button');
-    expect(actualDisabled.disabled).toBe(disabled);
+    expect(actualDisabled.disabled).toBe(mockBtnParams.disabled);
   });
 
   it('emits label on click', () => {
     const emitSpy = spyOn(component.customClick, 'emit');
 
-    component.handleClick(label);
+    component.handleClick(mockBtnParams.label);
 
     expect(emitSpy).toHaveBeenCalled();
-    expect(emitSpy).toHaveBeenCalledWith(label);
+    expect(emitSpy).toHaveBeenCalledWith(mockBtnParams.label);
   });
 
   it('displays ui in english if en is selected (default)', async () => {
     const btnRef = await loader.getHarness(MatButtonHarness);
     const btnText = await btnRef.getText();
 
-    const expectedTranslation = translateService.instant(label);
+    const expectedTranslation = translateService.instant(mockBtnParams.label);
     expect(btnText).toBe(expectedTranslation);
   });
 
@@ -103,7 +83,7 @@ describe('ButtonComponent', () => {
     translateService.use(selectOptions.uk.value);
     fixture.detectChanges();
 
-    const expectedTranslation = translateService.instant(label);
+    const expectedTranslation = translateService.instant(mockBtnParams.label);
     expect(btnText).toBe(expectedTranslation);
   });
 });

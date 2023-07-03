@@ -25,13 +25,6 @@ export class CartEffects {
               order: result.order,
             })
           )
-          // tap(() => {
-          //   this.snackBar.open('Order successfully placed!', 'Close', {
-          //     duration: 1000,
-          //     panelClass: ['success-snackbar'],
-          //     verticalPosition: 'top',
-          //   });
-          // })
         )
       )
     )

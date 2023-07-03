@@ -5,13 +5,8 @@ import {
 } from '@angular/common/http/testing';
 
 import { CurrencyService } from './currency.service';
-
-interface CurrencyResponseObj {
-  ccy: string;
-  base_ccy: string;
-  buy: string;
-  sale: string;
-}
+import { CurrencyResponseObj } from 'src/app/models/privatCurrency';
+import { mockCurrency } from 'src/app/shared/testing/mockData';
 
 describe('CurrencyService', () => {
   let service: CurrencyService;
@@ -20,21 +15,6 @@ describe('CurrencyService', () => {
   const expectedUrl =
     'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11';
   let expectedData: CurrencyResponseObj[] = [];
-
-  const fakeData: CurrencyResponseObj[] = [
-    {
-      ccy: 'EUR',
-      base_ccy: 'UAH',
-      buy: '39.77380',
-      sale: '41.49378',
-    },
-    {
-      ccy: 'USD',
-      base_ccy: 'UAH',
-      buy: '36.56860',
-      sale: '37.45318',
-    },
-  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -57,8 +37,8 @@ describe('CurrencyService', () => {
     service
       .getCurrencyRate()
       .subscribe((res: CurrencyResponseObj[]) => (expectedData = res));
-    controller.expectOne(expectedUrl).flush(fakeData);
+    controller.expectOne(expectedUrl).flush(mockCurrency);
 
-    expect(expectedData).toEqual(fakeData);
+    expect(expectedData).toEqual(mockCurrency);
   });
 });

@@ -14,29 +14,14 @@ import { MatSelectHarness } from '@angular/material/select/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateTestingModule } from 'ngx-translate-testing';
-import * as eng_trans from '../assets/i18n/en.json';
-import * as uk_trans from '../assets/i18n/uk.json';
-
-const TRANSLATIONS = {
-  en: eng_trans,
-  uk: uk_trans,
-};
+import { TRANSLATIONS } from 'src/app/shared/testing/translationConfig';
+import { selectOptions } from 'src/app/shared/testing/mockData';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let loader: HarnessLoader;
   let translateService: TranslateService;
-  const selectOptions = {
-    uk: {
-      value: 'uk',
-      innerText: 'Українська',
-    },
-    en: {
-      value: 'en',
-      innerText: 'English',
-    },
-  };
 
   const currencyService = jasmine.createSpyObj('currencyService', {
     getCurrencyRate: () => {},
