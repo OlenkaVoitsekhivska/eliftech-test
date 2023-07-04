@@ -1,18 +1,28 @@
+@import 'src/app/shared/styles/color-variables';
+
 .flex-container{
     display: flex;
-    padding: 50px 0;
+    padding: 24px 0;
     justify-content: space-between;
     align-items: center;
 }
-
 .container{
-    max-width: 1230px;
     margin:0 auto;
+}
+@media screen and (max-width: 1238px){
+    .container{
+        max-width:700px ;
+    }
+}
+@media screen and (min-width: 1239px){
+    .container{
+        max-width: 1230px;
+    }
 }
 
 nav{
     a{
-        color: wheat;
+        color: $link-color;
         font-weight: 500;
         font-size: 24px;
         margin-right: 50px;
@@ -20,11 +30,11 @@ nav{
     a:last-child{
         margin-right: 0;
         padding-left:45px;
-        border-left: 5px solid wheat;
+        border-left: 5px solid $link-color;
     }
     .active{
         font-weight: bold;
-        color: #C2185B;;
+        color: $accent;
     }
 }
 

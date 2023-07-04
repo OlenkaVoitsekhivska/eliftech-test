@@ -1,8 +1,19 @@
-
-img{
-    max-width: 300px;
-    object-fit: cover;
+.wrapper {
+    margin-bottom: 25px;
 }
-.wrapper{
-    margin-bottom:25px;
+
+.card {
+    &__img {
+        max-width: 300px;
+        object-fit: cover;
+    }
+
+    &__qnt {
+        margin-top: 15px;
+    }
+
+    &__text,
+    &__price {
+        font-weight: 500;
+    }
 }

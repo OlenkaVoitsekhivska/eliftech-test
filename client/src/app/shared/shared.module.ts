@@ -52,6 +52,7 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     SuccessfulOrderComponent,
     MatSelectModule,
     CurrencyPipe,
+    MatCardModule,
   ],
 })
 export class SharedModule {}

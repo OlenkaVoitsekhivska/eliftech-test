@@ -1,3 +1,28 @@
+
+@media screen and (max-width: 1238px) {
+    .form-container {
+        display: grid;
+        grid-template-areas:
+            "form"
+            "order"
+            "total";
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+@media screen and (min-width: 1239px) {
+    .form-container {
+        display: grid;
+        grid-template-areas:
+            "form order"
+            "total  order";
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+
 h2 {
     font-size: 32px;
 }
@@ -8,4 +33,20 @@ mat-form-field {
 
 .input {
     margin-bottom: 25px;
+}
+
+form {
+    grid-area: form;
+
+}
+
+app-cart-contents.scrollable {
+    grid-area: order;
+}
+
+.total {
+    grid-area: total;
+    h3{
+        font-weight: 500;
+    }
 }

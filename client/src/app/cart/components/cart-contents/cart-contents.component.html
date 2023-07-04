@@ -10,14 +10,16 @@
             | currency : ("CURRENCY" | translate) : "symbol-narrow"
         }}
       </p>
-      <input
-        data-testid="qnt-input"
-        type="number"
-        value="{{ prod.qnt }}"
-        class="card__qnt"
-        (input)="handleInput(prod, input.value)"
-        #input
-      />
+      <mat-form-field class="card__qnt" appearance="outline">
+        <input
+          matInput
+          data-testid="qnt-input"
+          type="number"
+          value="{{ prod.qnt }}"
+          (input)="handleInput(prod, input.value)"
+          #input
+        />
+      </mat-form-field>
       <app-button
         [label]="'BUTTONS.DELETE' | translate"
         class="card__btn"

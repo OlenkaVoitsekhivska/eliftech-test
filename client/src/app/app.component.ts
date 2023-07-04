@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { AppState } from 'src/app/store/models/appState';
 import { cartSelector } from 'src/app/store/cart/selectors';
@@ -14,7 +14,7 @@ import { CurrencyService } from './core/services/currency.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   language!: string;
 
   itemsInCartNumber$: Observable<number> = this.store
@@ -32,10 +32,6 @@ export class AppComponent implements OnInit {
   ) {
     this.translateService.setDefaultLang('en');
     this.translateService.use(localStorage.getItem('language') || 'en');
-  }
-
-  ngOnInit() {
-    this.language = localStorage.getItem('language') || 'en';
   }
 
   selectLanguage(lang: string) {

@@ -4,7 +4,7 @@
 
     <div *ngIf="menuItems.length" class="card scrollable">
       <div *ngFor="let prod of menuItems" class="card__wrapper">
-        <app-card>
+        <app-card class="card-padding">
           <img src="./../../assets/prod-img.png" alt="" class="card__img" />
           <h3 class="card__text">{{ prod.title }}</h3>
           <p class="card__price">

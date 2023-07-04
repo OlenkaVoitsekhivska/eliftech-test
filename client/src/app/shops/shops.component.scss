@@ -1,21 +1,44 @@
-.shops{
+.shops {
     display: flex;
-    &__sidebar{
+
+    &__sidebar {
         flex-basis: 25%;
     }
 
 }
 
-.card{
+.card {
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
-    gap:15px;
+    gap: 15px;
     justify-content: space-around;
     align-items: center;
-    &__wrapper{
+
+    &__wrapper {
         flex-basis: 40%;
     }
+
+    &__text {
+        margin-bottom: 0;
+    }
+
+    &__text,
+    &__price {
+        font-weight: 500;
+    }
+
+    .price-box {
+        padding: 15px 0;
+    }
+
+    .card__wrapper {
+        transition: transform 300ms cubic-bezier(.17, .67, .83, .67);
+    }
+
+    .card__wrapper:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+        z-index: 2;
+    }
 }
-
-

@@ -1,7 +1,11 @@
+@import 'src/app/shared/styles/color-variables';
 .shop:not(:last-child){
     margin-bottom: 25px;
 }
 .active {
     font-weight: bold;
-    color: #C2185B;
-  }
+    color: $accent;
+}
+.link-card{
+    padding:15px;
+}
