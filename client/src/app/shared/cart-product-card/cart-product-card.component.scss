@@ -1,8 +1,13 @@
 .card{
+    padding: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     &__content{
         padding-right:25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
+
 }

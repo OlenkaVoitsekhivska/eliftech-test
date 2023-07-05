@@ -1,8 +1,14 @@
-.card{
-    &__content{
+.card {
+    padding: 15px;
+    &__content {
         display: flex;
         flex-direction: column;
+    }
+
+    .mat-mdc-card-content {
+        display: flex;
+        justify-content: space-around;
         align-items: center;
-        justify-content: space-between;
+        padding: 20px 0;
     }
 }

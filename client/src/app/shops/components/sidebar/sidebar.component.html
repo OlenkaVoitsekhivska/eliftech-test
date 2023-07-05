@@ -1,12 +1,12 @@
 <ng-container *ngIf="shops$ | async as shops">
   <div *ngFor="let place of shops" class="shop">
-    <app-card type="shop">
+    <mat-card class="link-card">
       <a
         routerLink="/shops/{{ place._id }}"
         class="card__text"
         routerLinkActive="active"
         >{{ place.name }}</a
       >
-    </app-card>
+    </mat-card>
   </div>
 </ng-container>

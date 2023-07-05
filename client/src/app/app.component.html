@@ -1,11 +1,24 @@
 <div class="container">
-  <nav>
-    <div>
-      <a routerLink="shops" routerLinkActive="active">Shop</a>
+  <div class="flex-container">
+    <nav>
+      <a routerLink="shops" routerLinkActive="active">{{
+        "APP_COMPONENT.SHOP" | translate
+      }}</a>
       <a routerLink="cart" routerLinkActive="active"
-        >Shopping Cart ({{ itemsInCartNumber$ | async }})</a
+        >{{ "APP_COMPONENT.CART" | translate }} ({{
+          itemsInCartNumber$ | async
+        }})</a
       >
+    </nav>
+    <div>
+      <mat-form-field>
+        <mat-label>{{ "APP_COMPONENT.LANGUAGE" | translate }}</mat-label>
+        <mat-select (selectionChange)="selectLanguage($event.value)">
+          <mat-option value="en">English</mat-option>
+          <mat-option value="uk">Українська</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  </nav>
+  </div>
   <router-outlet></router-outlet>
 </div>

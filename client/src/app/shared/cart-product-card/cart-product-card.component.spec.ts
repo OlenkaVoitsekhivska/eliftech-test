@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartProductCardComponent } from './cart-product-card.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CartProductCardComponent', () => {
   let component: CartProductCardComponent;
@@ -8,9 +9,9 @@ describe('CartProductCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartProductCardComponent ]
-    })
-    .compileComponents();
+      declarations: [CartProductCardComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CartProductCardComponent);
     component = fixture.componentInstance;

@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'src/app/shared/styles/color-variables';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a{
     text-decoration: none;
-    color: wheat;
+    color: $link-color;
 }
 .scrollable{
     max-height: 80vh;
@@ -22,11 +23,11 @@ a{
   }
   
   ::-webkit-scrollbar-track {
-    background-color: #535353; /* Background color of the scrollbar track */
+    background-color: $scrollbar-bcg; /* Background color of the scrollbar track */
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #C2185B; /* Color of the scrollbar thumb */
+    background-color: $accent; /* Color of the scrollbar thumb */
     border-radius: 4px;
   }
 
@@ -51,3 +52,4 @@ a{
     color: white;
   }
 }
+
